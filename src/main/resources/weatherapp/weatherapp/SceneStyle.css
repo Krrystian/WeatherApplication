@@ -1,0 +1,32 @@
+.root{
+    -fx-background-color: linear-gradient(to bottom right, #cc99ff, #0033cc);
+}
+.label{
+    -fx-font-family: "Sans Serif";
+    -fx-text-fill: "white";
+    -fx-font-size: 13;
+}
+.text-field{
+    -fx-text-box-border: "white";
+    -fx-focus-color: "white";
+}
+
+#countryNameLabel{
+    -fx-font-size: 18;}
+
+#factsLabel{
+    -fx-font-size: 20;
+    -fx-alignment: center;}
+
+#factInfoLabel{
+    -fx-alignment: top_center;}
+
+#weatherForTodayLabel{
+    -fx-font-size: 18;
+    -fx-alignment: center;}
+
+#cloudyLabel{
+    -fx-font-size: 18;}
+
+#temperatureLabel{
+    -fx-font-size:37;}

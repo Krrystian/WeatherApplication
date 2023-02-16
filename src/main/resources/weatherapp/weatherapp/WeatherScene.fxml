@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.shape.Line?>
+<?import javafx.scene.text.Font?>
+
+<TabPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="544.0" tabClosingPolicy="UNAVAILABLE" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="weatherapp.weatherapp.Controller">
+  <tabs>
+    <Tab text="Today">
+      <content>
+        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="369.0" prefWidth="558.0">
+               <children>
+                  <Label fx:id="countryNameLabel" layoutX="76.0" layoutY="81.0" prefHeight="23.0" prefWidth="244.0" text="Country Name">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="temperatureLabel" layoutX="301.0" layoutY="47.0" prefHeight="46.0" prefWidth="229.0" text="Temperatute">
+                     <font>
+                        <Font size="37.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="cloudyLabel" layoutX="302.0" layoutY="93.0" prefHeight="23.0" prefWidth="228.0" text="Cloudy/Mostly Cloudy">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="factsLabel" alignment="CENTER" layoutX="1.0" layoutY="173.0" prefHeight="23.0" prefWidth="226.0" text="Fact about today">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="factInfoLabel" alignment="TOP_CENTER" layoutY="196.0" prefHeight="165.0" prefWidth="227.0" text="Fact" textAlignment="CENTER" />
+                  <Line endX="-32.5" endY="161.5" layoutX="260.0" layoutY="193.0" startX="-32.5" startY="-16.5" strokeWidth="2.0" />
+                  <Label fx:id="weatherForTodayLabel" alignment="CENTER" layoutX="230.0" layoutY="173.0" prefHeight="23.0" prefWidth="314.0" text="Weather for today">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="feelsLikeLabel" layoutX="272.0" layoutY="231.0" prefHeight="17.0" prefWidth="135.0" text="Feels like: " />
+                  <Label fx:id="minimumLabel" layoutX="272.0" layoutY="270.0" prefHeight="17.0" prefWidth="134.0" text="Minimum: " />
+                  <Label fx:id="maximumLabel" layoutX="270.0" layoutY="313.0" prefHeight="17.0" prefWidth="135.0" text="Maximum: " />
+                  <Label fx:id="pressureLabel" layoutX="407.0" layoutY="231.0" prefHeight="17.0" prefWidth="134.0" text="Pressure:" />
+                  <Label fx:id="humidityLabel" layoutX="406.0" layoutY="270.0" prefHeight="17.0" prefWidth="135.0" text="Humidity:" />
+                  <Label fx:id="cloudsLabel" layoutX="406.0" layoutY="313.0" prefHeight="17.0" prefWidth="135.0" text="Clouds:" />
+                  <TextField fx:id="cityNameTextField" blendMode="DARKEN" layoutX="56.0" layoutY="24.0" onAction="#getCityName" pickOnBounds="false" prefHeight="57.0" prefWidth="242.0" promptText="City Name...">
+                     <font>
+                        <Font size="30.0" />
+                     </font>
+                  </TextField>
+               </children></AnchorPane>
+      </content>
+    </Tab>
+    <Tab text="Long Term">
+      <content>
+        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+      </content>
+    </Tab>
+  </tabs>
+</TabPane>
