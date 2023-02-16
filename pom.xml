@@ -88,7 +88,7 @@
         </plugins>
         <resources>
             <resource>
-                <directory>${basedir}/src/main/resources/com.example.fxscenebuilder</directory>
+                <directory>${basedir}/src/main/resources/weatherapp.weatherapp</directory>
                 <includes>
                     <include>**/*</include>
                 </includes>
