@@ -30,3 +30,10 @@
 
 #temperatureLabel{
     -fx-font-size:37;}
+
+#cityNameLabel{
+    -fx-font-size:34;}
+
+.highlight{
+    -fx-background-color: #00000025;
+    -fx-background-radius: 15;}

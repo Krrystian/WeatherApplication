@@ -3,8 +3,8 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Tab?>
 <?import javafx.scene.control.TabPane?>
-<?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 
@@ -14,7 +14,7 @@
       <content>
         <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="369.0" prefWidth="558.0">
                <children>
-                  <Label fx:id="countryNameLabel" layoutX="76.0" layoutY="81.0" prefHeight="23.0" prefWidth="244.0" text="Country Name">
+                  <Label fx:id="countryNameLabel" layoutX="76.0" layoutY="82.0" prefHeight="23.0" prefWidth="244.0" text="Country Name">
                      <font>
                         <Font size="18.0" />
                      </font>
@@ -47,11 +47,16 @@
                   <Label fx:id="pressureLabel" layoutX="407.0" layoutY="231.0" prefHeight="17.0" prefWidth="134.0" text="Pressure:" />
                   <Label fx:id="humidityLabel" layoutX="406.0" layoutY="270.0" prefHeight="17.0" prefWidth="135.0" text="Humidity:" />
                   <Label fx:id="cloudsLabel" layoutX="406.0" layoutY="313.0" prefHeight="17.0" prefWidth="135.0" text="Clouds:" />
-                  <TextField fx:id="cityNameTextField" blendMode="DARKEN" layoutX="56.0" layoutY="24.0" onAction="#getCityName" pickOnBounds="false" prefHeight="57.0" prefWidth="242.0" promptText="City Name...">
+                  <Pane fx:id="settingsPane" layoutX="474.0" layoutY="-1.0" onMouseClicked="#getSettings" prefHeight="30.0" prefWidth="66.0" styleClass="highlight">
+                     <children>
+                        <Label alignment="CENTER" layoutX="-2.0" prefHeight="31.0" prefWidth="68.0" text="Settings" />
+                     </children>
+                  </Pane>
+                  <Label fx:id="cityNameLabel" layoutX="76.0" layoutY="49.0" prefHeight="37.0" prefWidth="231.0" text="City Name">
                      <font>
-                        <Font size="30.0" />
+                        <Font size="34.0" />
                      </font>
-                  </TextField>
+                  </Label>
                </children></AnchorPane>
       </content>
     </Tab>

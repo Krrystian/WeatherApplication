@@ -1,14 +1,10 @@
 package weatherapp.weatherapp;
 
 import javafx.application.Application;
-import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
-import javafx.scene.input.KeyCode;
-import javafx.scene.input.KeyEvent;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -27,10 +23,15 @@ public class WeatherApp extends Application {
         Image icon = new Image(Objects.requireNonNull(Objects.requireNonNull(getClass().getResource("images/cloudy.png")).toExternalForm()));
         stage.getIcons().add(icon);
 
-
         //CSS Style
         scene.getStylesheets().add(Objects.requireNonNull(getClass().getResource("SceneStyle.css")).toExternalForm());
 
+
+        String city = CurrentLocation.getLocation();
+        System.out.println(city);
+        //?????????
+        //Controller controller = new Controller();
+        //controller.basicLocation(city);
 
         stage.setScene(scene);
         stage.show();
