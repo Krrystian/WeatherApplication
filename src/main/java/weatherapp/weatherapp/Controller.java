@@ -38,7 +38,7 @@ public class Controller {
 
         //check if enter pressed
         cityNameTextField.setOnKeyPressed(keyEvent -> {
-            if (keyEvent.getCode() == KeyCode.ENTER) {
+            if (keyEvent.getCode().equals(KeyCode.ENTER)) {
                 cityName = cityNameTextField.getText().strip();
             }
         });
@@ -112,9 +112,11 @@ public class Controller {
     private void getWeather(){
         String temp = String.valueOf(jsonNode.get("clouds").get("all") + " %").replaceAll("\"","");
         cloudsLabel.setText("Clouds: " +temp);
-        temp = String.valueOf(jsonNode.get("weather").get(0).get("description")).replaceAll("\"","");
+        JsonNode js = jsonNode.get("weather");
+        temp = String.valueOf(js.get(0).get("description")).replaceAll("\"","");
         temp = temp.substring(0,1).toUpperCase() + temp.substring(1);
         cloudyLabel.setText(temp);
+        IMAGE = String.valueOf(js.get(0).get("icon"));
 
     }
 
