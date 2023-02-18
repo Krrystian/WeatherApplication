@@ -15,6 +15,8 @@ import java.util.ResourceBundle;
 
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
 
 
@@ -33,6 +35,8 @@ public class Controller implements Initializable {
             humidityLabel,
             cloudsLabel,
             cityNameLabel;
+    @FXML
+    ImageView weatherIcon;
     String cityName;
     JsonNode jsonNode;
     String API_ID = "5e06438d50f63775dfac81c821f1f979";
@@ -93,6 +97,7 @@ public class Controller implements Initializable {
         getCountry();
         getTemperature();
         getWeather();
+        getImage();
     }
     private void getCountry(){
         String temp = (jsonNode.get("name")
@@ -122,8 +127,16 @@ public class Controller implements Initializable {
         temp = String.valueOf(js.get(0).get("description")).replaceAll("\"","");
         temp = temp.substring(0,1).toUpperCase() + temp.substring(1);
         cloudyLabel.setText(temp);
-        IMAGE = String.valueOf(js.get(0).get("icon"));
+        IMAGE = String.valueOf(js.get(0).get("icon")).replaceAll("\"","");
     }
+    private void getImage(){
+        String iconUrl = "http://openweathermap.org/img/w/" + IMAGE + ".png";
+        //System.out.println(iconUrl);
+        Image image = new Image(iconUrl);
+        weatherIcon.setImage(image);
+    }
+
+    //WE CAN MAKE ONE FUNCTION CALLED in getSettings and basicLocation
     public void getSettings(){
         TextInputDialog dialog = new TextInputDialog(cityName);
         dialog.setTitle("Change city");

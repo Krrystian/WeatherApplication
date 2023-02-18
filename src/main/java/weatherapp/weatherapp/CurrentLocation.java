@@ -35,7 +35,7 @@ public class CurrentLocation {
     }
     public static String getLocation() throws IOException {
         ipAddress();
-        URL url = new URL("http://ip-api.com/json/"+ipAdd+"?fields=17") ;
+        URL url = new URL("http://ip-api.com/json/"+ipAdd+"?fields=17");
         HttpURLConnection conn = (HttpURLConnection) url.openConnection();
         conn.setRequestMethod("GET");
         BufferedReader in = new BufferedReader(new InputStreamReader(conn.getInputStream()));

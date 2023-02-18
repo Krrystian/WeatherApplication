@@ -26,10 +26,11 @@ public class WeatherApp extends Application {
         String city = CurrentLocation.getLocation();
         setCityLocation(city);
 
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("WeatherScene.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("WeatherScene2.fxml"));
         Parent root = fxmlLoader.load();
 
         Scene scene = new Scene(root);
+        DailyFacts.getDailyFact();
 
         stage.setTitle("Weather Application"); //application window name
 
@@ -37,8 +38,6 @@ public class WeatherApp extends Application {
         Image icon = new Image(Objects.requireNonNull(Objects.requireNonNull(getClass().getResource("images/cloudy.png")).toExternalForm()));
         stage.getIcons().add(icon);
 
-        //CSS Style
-        scene.getStylesheets().add(Objects.requireNonNull(getClass().getResource("SceneStyle.css")).toExternalForm());
 
 
         stage.setScene(scene);
