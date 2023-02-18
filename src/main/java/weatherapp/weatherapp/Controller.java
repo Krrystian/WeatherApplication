@@ -1,25 +1,24 @@
 package weatherapp.weatherapp;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonNode;
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextInputDialog;
 
-import java.net.ProtocolException;
 import java.util.Optional;
 
 import java.io.*;
 import java.net.HttpURLConnection;
 import java.net.URL;
-
+import java.util.ResourceBundle;
 
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import javafx.scene.layout.Pane;
 
 
-public class Controller {
+public class Controller implements Initializable {
     @FXML
     Pane settingsPane;
     @FXML
@@ -176,6 +175,16 @@ public class Controller {
         System.out.println(jsonNode.toPrettyString());
 
         cityNameLabel.setText(ct);
+    }
+
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+        try {
+            basicLocation(WeatherApp.getCityLocation());
+            getWeatherInformation();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
     }
 }
 
