@@ -7,51 +7,47 @@
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" stylesheets="@SceneStyle.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="weatherapp.weatherapp.Controller">
-        <children>
-            <Label fx:id="countryNameLabel" layoutX="76.0" layoutY="94.0" prefHeight="23.0" prefWidth="244.0" text="Country Name">
-                <font>
-                    <Font size="18.0" />
-                </font>
-            </Label>
-            <Label fx:id="temperatureLabel" layoutX="320.0" layoutY="47.0" prefHeight="46.0" prefWidth="168.0" text="Temperatute">
-                <font>
-                    <Font size="37.0" />
-                </font>
-            </Label>
-            <Label fx:id="cloudyLabel" layoutX="320.0" layoutY="94.0" prefHeight="23.0" prefWidth="228.0" text="Cloudy/Mostly Cloudy">
-                <font>
-                    <Font size="18.0" />
-                </font>
-            </Label>
-            <Label fx:id="factsLabel" alignment="CENTER" layoutX="1.0" layoutY="173.0" prefHeight="23.0" prefWidth="226.0" text="Fact about today">
-                <font>
-                    <Font size="18.0" />
-                </font>
-            </Label>
-            <Label fx:id="factInfoLabel" alignment="TOP_CENTER" layoutY="204.0" prefHeight="157.0" prefWidth="227.0" text="Fact" textAlignment="CENTER" wrapText="true" />
-            <Line endX="-32.5" endY="191.0" layoutX="260.0" layoutY="193.0" startX="-32.5" startY="-16.5" strokeWidth="2.0" />
-            <Label fx:id="weatherForTodayLabel" alignment="CENTER" layoutX="230.0" layoutY="173.0" prefHeight="23.0" prefWidth="375.0" text="Weather for today">
-                <font>
-                    <Font size="18.0" />
-                </font>
-            </Label>
-            <Label fx:id="feelsLikeLabel" layoutX="272.0" layoutY="231.0" prefHeight="17.0" prefWidth="135.0" text="Feels like: " />
-            <Label fx:id="minimumLabel" layoutX="272.0" layoutY="287.0" prefHeight="17.0" prefWidth="134.0" text="Minimum: " />
-            <Label fx:id="maximumLabel" layoutX="271.0" layoutY="344.0" prefHeight="17.0" prefWidth="135.0" text="Maximum: " />
-            <Label fx:id="pressureLabel" layoutX="451.0" layoutY="231.0" prefHeight="17.0" prefWidth="134.0" text="Pressure:" />
-            <Label fx:id="humidityLabel" layoutX="451.0" layoutY="287.0" prefHeight="17.0" prefWidth="135.0" text="Humidity:" />
-            <Label fx:id="cloudsLabel" layoutX="451.0" layoutY="344.0" prefHeight="17.0" prefWidth="135.0" text="Clouds:" />
-            <Pane fx:id="settingsPane" layoutX="541.0" layoutY="-1.0" onMouseClicked="#getSettings" prefHeight="30.0" prefWidth="66.0" styleClass="highlight">
-                <children>
-                    <Label alignment="CENTER" layoutX="-2.0" prefHeight="31.0" prefWidth="68.0" text="Settings" />
-                </children>
-            </Pane>
-            <Label fx:id="cityNameLabel" layoutX="76.0" layoutY="49.0" prefHeight="37.0" prefWidth="231.0" text="City Name">
-                <font>
-                    <Font size="34.0" />
-                </font>
-            </Label>
-      <ImageView fx:id="weatherIcon" fitHeight="72.0" fitWidth="82.0" layoutX="488.0" layoutY="36.0" pickOnBounds="true" preserveRatio="true" />
-        </children>
+<AnchorPane fx:id="anchorPane" prefHeight="400.0" prefWidth="600.0" stylesheets="@SceneStyle.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="weatherapp.weatherapp.Controller">
+    <Label fx:id="countryNameLabel" layoutX="76.0" layoutY="94.0" prefHeight="23.0" prefWidth="244.0" text="Country Name">
+        <font>
+            <Font size="18.0" />
+        </font>
+    </Label>
+    <Label fx:id="temperatureLabel" layoutX="320.0" layoutY="47.0" prefHeight="46.0" prefWidth="168.0" text="Temperatute">
+        <font>
+            <Font size="37.0" />
+        </font>
+    </Label>
+    <Label fx:id="cloudyLabel" layoutX="320.0" layoutY="94.0" prefHeight="23.0" prefWidth="228.0" text="Cloudy/Mostly Cloudy">
+        <font>
+            <Font size="18.0" />
+        </font>
+    </Label>
+    <Label fx:id="factsLabel" alignment="CENTER" layoutX="1.0" layoutY="173.0" prefHeight="23.0" prefWidth="226.0" text="Fact about today">
+        <font>
+            <Font size="18.0" />
+        </font>
+    </Label>
+    <Label fx:id="factInfoLabel" alignment="TOP_CENTER" layoutY="204.0" prefHeight="157.0" prefWidth="227.0" text="Fact" textAlignment="CENTER" wrapText="true" />
+    <Line endX="-32.5" endY="191.0" layoutX="260.0" layoutY="193.0" startX="-32.5" startY="-16.5" strokeWidth="2.0" />
+    <Label fx:id="weatherForTodayLabel" alignment="CENTER" layoutX="230.0" layoutY="173.0" prefHeight="23.0" prefWidth="375.0" text="Weather for today">
+        <font>
+            <Font size="18.0" />
+        </font>
+    </Label>
+    <Label fx:id="feelsLikeLabel" layoutX="272.0" layoutY="231.0" prefHeight="17.0" prefWidth="135.0" text="Feels like: " />
+    <Label fx:id="minimumLabel" layoutX="272.0" layoutY="287.0" prefHeight="17.0" prefWidth="134.0" text="Minimum: " />
+    <Label fx:id="maximumLabel" layoutX="271.0" layoutY="344.0" prefHeight="17.0" prefWidth="135.0" text="Maximum: " />
+    <Label fx:id="pressureLabel" layoutX="451.0" layoutY="231.0" prefHeight="17.0" prefWidth="134.0" text="Pressure:" />
+    <Label fx:id="humidityLabel" layoutX="451.0" layoutY="287.0" prefHeight="17.0" prefWidth="135.0" text="Humidity:" />
+    <Label fx:id="cloudsLabel" layoutX="451.0" layoutY="344.0" prefHeight="17.0" prefWidth="135.0" text="Clouds:" />
+    <Pane fx:id="settingsPane" layoutX="541.0" layoutY="-1.0" onMouseClicked="#getSettings" prefHeight="30.0" prefWidth="66.0" styleClass="highlight">
+        <Label alignment="CENTER" layoutX="-2.0" prefHeight="31.0" prefWidth="68.0" text="Settings" />
+    </Pane>
+    <Label fx:id="cityNameLabel" layoutX="76.0" layoutY="49.0" prefHeight="37.0" prefWidth="231.0" text="City Name">
+        <font>
+            <Font size="34.0" />
+        </font>
+    </Label>
+    <ImageView fx:id="weatherIcon" fitHeight="72.0" fitWidth="82.0" layoutX="488.0" layoutY="36.0" pickOnBounds="true" preserveRatio="true" />
 </AnchorPane>

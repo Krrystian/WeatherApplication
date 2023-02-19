@@ -26,8 +26,6 @@ public class WeatherApp extends Application {
         String city = CurrentLocation.getLocation();
         setCityLocation(city);
 
-        //Daily Facts
-        DailyFacts.getDailyFact();
 
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("WeatherScene2.fxml"));
         Parent root = fxmlLoader.load();

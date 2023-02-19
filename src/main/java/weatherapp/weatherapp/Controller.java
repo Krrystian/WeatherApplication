@@ -17,7 +17,9 @@ import java.util.ResourceBundle;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
+
 
 
 public class Controller implements Initializable {
@@ -34,66 +36,19 @@ public class Controller implements Initializable {
             pressureLabel,
             humidityLabel,
             cloudsLabel,
-            cityNameLabel;
+            cityNameLabel,
+            weatherForTodayLabel,
+            factsLabel;
     @FXML
     ImageView weatherIcon;
     String cityName;
     JsonNode jsonNode;
     String API_ID = "5e06438d50f63775dfac81c821f1f979";
     String IMAGE;
+    @FXML
+    AnchorPane anchorPane;
 
-
-//    public void getCityName(){
-//
-//        //check if enter pressed
-//        cityNameTextField.setOnKeyPressed(keyEvent -> {
-//            if (keyEvent.getCode().equals(KeyCode.ENTER)) {
-//                cityName = cityNameTextField.getText().strip();
-//            }
-//        });
-//
-//
-//        if(cityName != null){
-//            try {
-//                URL url = new URL("http://api.openweathermap.org/data/2.5/weather?q=" + cityName + "&&appid=" + API_ID+"&units=metric");
-//                System.out.println(url.toExternalForm());
-//
-////                StringBuilder result = new StringBuilder();
-////                URLConnection connection = url.openConnection();
-////                BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(connection.getInputStream()));
-////                String line;
-////                while ((line = bufferedReader.readLine()) != null) {
-////                    result.append(line);
-////
-////                }
-////                bufferedReader.close();
-////                System.out.println(a);
-//
-//                //Get request from api: longitude / latitude
-//                HttpURLConnection conn =(HttpURLConnection) url.openConnection();
-//                conn.setRequestMethod("GET");
-//                BufferedReader in = new BufferedReader(new InputStreamReader(conn.getInputStream()));
-//                String inputLine;
-//                StringBuilder response = new StringBuilder();
-//                while ((inputLine = in.readLine()) != null) {
-//                    response.append(inputLine);
-//                }
-//                in.close();
-//                String result2 = response.toString();
-//
-//                ObjectMapper mapper = new ObjectMapper();
-//                jsonNode = mapper.readTree(result2);
-//
-//                System.out.println(jsonNode.toPrettyString());
-//
-//            }catch (IOException e){
-//                System.out.println(e.getMessage());
-//            }
-//            getWeatherInformation();
-//        }
-//    }
-
-    public void getWeatherInformation(){
+    public void getWeatherInformation() throws IOException {
         getCountry();
         getTemperature();
         getWeather();
@@ -136,9 +91,30 @@ public class Controller implements Initializable {
         Image image = new Image(iconUrl);
         weatherIcon.setImage(image);
     }
+    private void callOWM(String city){
+        try {
+            URL url = new URL("http://api.openweathermap.org/data/2.5/weather?q=" + city + "&&appid=" + API_ID + "&units=metric");
+            HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+            conn.setRequestMethod("GET");
+            BufferedReader in = new BufferedReader(new InputStreamReader(conn.getInputStream()));
+            String inputLine;
+            StringBuilder response = new StringBuilder();
+            while ((inputLine = in.readLine()) != null) {
+                response.append(inputLine);
+            }
 
-    //WE CAN MAKE ONE FUNCTION CALLED in getSettings and basicLocation
-    public void getSettings(){
+            in.close();
+            String result2 = response.toString();
+            ObjectMapper mapper = new ObjectMapper();
+            jsonNode = mapper.readTree(result2);
+            System.out.println(jsonNode.toPrettyString());
+
+            cityNameLabel.setText(cityName);
+        }catch (IOException e){
+            System.out.println(e.getMessage());
+        }
+    }
+    public void getSettings() throws IOException {
         TextInputDialog dialog = new TextInputDialog(cityName);
         dialog.setTitle("Change city");
         dialog.setHeaderText("Enter new city name.");
@@ -146,51 +122,16 @@ public class Controller implements Initializable {
         Optional<String> newCity = dialog.showAndWait();
         if(newCity.isPresent()){
             cityName = newCity.get();
-            try {
-
-                URL url = new URL("http://api.openweathermap.org/data/2.5/weather?q=" + cityName + "&&appid=" + API_ID + "&units=metric");
-                HttpURLConnection conn = (HttpURLConnection) url.openConnection();
-                conn.setRequestMethod("GET");
-                BufferedReader in = new BufferedReader(new InputStreamReader(conn.getInputStream()));
-                String inputLine;
-                StringBuilder response = new StringBuilder();
-                while ((inputLine = in.readLine()) != null) {
-                    response.append(inputLine);
-                }
-
-                in.close();
-                String result2 = response.toString();
-                ObjectMapper mapper = new ObjectMapper();
-                jsonNode = mapper.readTree(result2);
-                System.out.println(jsonNode.toPrettyString());
-
-                cityNameLabel.setText(cityName);
-            }catch (IOException e){
-                System.out.println(e.getMessage());
-            }
+            callOWM(cityName);
             getWeatherInformation();
         }
     }
-    public void getFacts(){
+    public void getFacts() throws IOException {
+        DailyFacts.getDailyFact();
         factInfoLabel.setText(DailyFacts.getFactInformation());
     }
     public void basicLocation(String ct) throws IOException {
-        URL url = new URL("http://api.openweathermap.org/data/2.5/weather?q=" + ct + "&&appid=" + API_ID + "&units=metric");
-        HttpURLConnection conn = (HttpURLConnection) url.openConnection();
-        conn.setRequestMethod("GET");
-        BufferedReader in = new BufferedReader(new InputStreamReader(conn.getInputStream()));
-        String inputLine;
-        StringBuilder response = new StringBuilder();
-        while ((inputLine = in.readLine()) != null) {
-            response.append(inputLine);
-        }
-
-        in.close();
-        String result2 = response.toString();
-        ObjectMapper mapper = new ObjectMapper();
-        jsonNode = mapper.readTree(result2);
-        System.out.println(jsonNode.toPrettyString());
-
+        callOWM(ct);
         cityNameLabel.setText(ct);
     }
 
