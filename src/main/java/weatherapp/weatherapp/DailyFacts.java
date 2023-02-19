@@ -13,8 +13,11 @@ import java.time.LocalDate;
 
 
 /**
- * Using Rapid API - numbers
+ * Using Rapid API - NumbersAPI for date facts
+ * To make it work you need your own API-key:
+ * https://rapidapi.com/divad12/api/numbers-1
  */
+
 public class DailyFacts {
     static String factInformation;
 
@@ -23,10 +26,11 @@ public class DailyFacts {
     }
 
     public static void getDailyFact() throws IOException {
+        //Get local time
         String[]date = String.valueOf(LocalDate.now()).split("-");
-
+        
+        //Get request
         URL url = new URL("https://numbersapi.p.rapidapi.com/"+date[1]+"/"+date[2]+"/date?fragment=true&json=true");
-//        System.out.println(url);
         HttpURLConnection conn = (HttpURLConnection) url.openConnection();
         conn.addRequestProperty("X-RapidAPI-Key", "");
         conn.addRequestProperty("X-RapidAPI-Host", "");
@@ -43,8 +47,8 @@ public class DailyFacts {
         ObjectMapper mapper = new ObjectMapper();
         JsonNode jsonNode = mapper.readTree(result2);
 
+        //day.month.year "message"
         factInformation = (date[2]+"."+date[1]+"."+jsonNode.get("year") +" "+ (jsonNode.get("text"))).replaceAll("\"","");
-//        System.out.println(factInformation);
 
     }
 }
