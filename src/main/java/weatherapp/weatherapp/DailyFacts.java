@@ -7,18 +7,26 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
+
 import java.net.URL;
+import java.time.LocalDate;
+
 
 /**
  * Using Rapid API - numbers
  */
 public class DailyFacts {
-    static String day="6",month="21";
     static String factInformation;
 
+    public static String getFactInformation() {
+        return factInformation;
+    }
+
     public static void getDailyFact() throws IOException {
-        URL url = new URL("https://numbersapi.p.rapidapi.com/"+month +"/"+day+"/date?fragment=true&json=true");
+        String[]date = String.valueOf(LocalDate.now()).split("-");
+
+        URL url = new URL("https://numbersapi.p.rapidapi.com/"+date[1]+"/"+date[2]+"/date?fragment=true&json=true");
+//        System.out.println(url);
         HttpURLConnection conn = (HttpURLConnection) url.openConnection();
         conn.addRequestProperty("X-RapidAPI-Key", "52f6693dacmsh65e981a731143fbp1af2bajsn2013c8ec5ac6");
         conn.addRequestProperty("X-RapidAPI-Host", "numbersapi.p.rapidapi.com");
@@ -34,9 +42,9 @@ public class DailyFacts {
         String result2 = response.toString();
         ObjectMapper mapper = new ObjectMapper();
         JsonNode jsonNode = mapper.readTree(result2);
-        //System.out.println(jsonNode.toPrettyString());
-        factInformation = (jsonNode.get("year") +" "+ String.valueOf(jsonNode.get("text"))).replaceAll("\"","");
-        System.out.println(factInformation);
+
+        factInformation = (date[2]+"."+date[1]+"."+jsonNode.get("year") +" "+ (jsonNode.get("text"))).replaceAll("\"","");
+//        System.out.println(factInformation);
 
     }
 }

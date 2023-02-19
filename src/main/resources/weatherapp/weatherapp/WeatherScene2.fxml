@@ -29,7 +29,7 @@
                     <Font size="18.0" />
                 </font>
             </Label>
-            <Label fx:id="factInfoLabel" alignment="TOP_CENTER" layoutY="204.0" prefHeight="157.0" prefWidth="227.0" text="Fact" textAlignment="CENTER" />
+            <Label fx:id="factInfoLabel" alignment="TOP_CENTER" layoutY="204.0" prefHeight="157.0" prefWidth="227.0" text="Fact" textAlignment="CENTER" wrapText="true" />
             <Line endX="-32.5" endY="191.0" layoutX="260.0" layoutY="193.0" startX="-32.5" startY="-16.5" strokeWidth="2.0" />
             <Label fx:id="weatherForTodayLabel" alignment="CENTER" layoutX="230.0" layoutY="173.0" prefHeight="23.0" prefWidth="375.0" text="Weather for today">
                 <font>

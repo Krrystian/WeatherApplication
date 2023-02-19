@@ -98,6 +98,7 @@ public class Controller implements Initializable {
         getTemperature();
         getWeather();
         getImage();
+        getFacts();
     }
     private void getCountry(){
         String temp = (jsonNode.get("name")
@@ -169,6 +170,9 @@ public class Controller implements Initializable {
             }
             getWeatherInformation();
         }
+    }
+    public void getFacts(){
+        factInfoLabel.setText(DailyFacts.getFactInformation());
     }
     public void basicLocation(String ct) throws IOException {
         URL url = new URL("http://api.openweathermap.org/data/2.5/weather?q=" + ct + "&&appid=" + API_ID + "&units=metric");

@@ -26,20 +26,18 @@ public class WeatherApp extends Application {
         String city = CurrentLocation.getLocation();
         setCityLocation(city);
 
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("WeatherScene2.fxml"));
-        Parent root = fxmlLoader.load();
-
-        Scene scene = new Scene(root);
+        //Daily Facts
         DailyFacts.getDailyFact();
 
-        stage.setTitle("Weather Application"); //application window name
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("WeatherScene2.fxml"));
+        Parent root = fxmlLoader.load();
+        Scene scene = new Scene(root);
+        stage.setTitle("Weather Application");
 
         //Icon Image
         Image icon = new Image(Objects.requireNonNull(Objects.requireNonNull(getClass().getResource("images/cloudy.png")).toExternalForm()));
         stage.getIcons().add(icon);
-
-
-
+        stage.setResizable(false);
         stage.setScene(scene);
         stage.show();
 
