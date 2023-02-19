@@ -11,22 +11,24 @@ import java.io.IOException;
 import java.util.Objects;
 
 public class WeatherApp extends Application {
-    private static String cityLocation;
-
+    
+    //pass cityLocation to Controller
+    private static String cityLocation; 
+    
     public static String getCityLocation() {
         return cityLocation;
     }
+    
     public static void setCityLocation(String cityLocation) {
         WeatherApp.cityLocation = cityLocation;
     }
-
     @Override
     public void start(Stage stage) throws IOException {
         //Current location
         String city = CurrentLocation.getLocation();
         setCityLocation(city);
 
-
+        //Scene initialization
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("WeatherScene2.fxml"));
         Parent root = fxmlLoader.load();
         Scene scene = new Scene(root);
@@ -35,6 +37,7 @@ public class WeatherApp extends Application {
         //Icon Image
         Image icon = new Image(Objects.requireNonNull(Objects.requireNonNull(getClass().getResource("images/cloudy.png")).toExternalForm()));
         stage.getIcons().add(icon);
+        
         stage.setResizable(false);
         stage.setScene(scene);
         stage.show();
