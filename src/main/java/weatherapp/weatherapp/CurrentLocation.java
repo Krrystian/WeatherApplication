@@ -13,26 +13,27 @@ import java.net.URL;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-
 public class CurrentLocation {
+    
     private static final String IPADDRESS_PATTERN =
             "(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)";
     private static String ipAdd;
-
-
+    
     private static void ipAddress() throws IOException {
         URL url = new URL("http://checkip.dyndns.org/");
         BufferedReader br = new BufferedReader(new InputStreamReader(url.openStream()));
         String ip = br.readLine();
+        
+        //extract IP address from html
         Pattern pattern = Pattern.compile(IPADDRESS_PATTERN);
         Matcher matcher = pattern.matcher(ip);
         if (matcher.find()){
             ip = matcher.group();
         }
-        //System.out.println(ip);
         ipAdd = ip;
-
     }
+    
+    //get location based on IP
     public static String getLocation() throws IOException {
         ipAddress();
         URL url = new URL("http://ip-api.com/json/"+ipAdd+"?fields=17");
