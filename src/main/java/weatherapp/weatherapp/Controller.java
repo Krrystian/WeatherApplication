@@ -13,14 +13,18 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-
 import com.fasterxml.jackson.databind.ObjectMapper;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 
-
+/**
+ * Using OpenWeatherMap API for weather calls
+ * To make it work you need your own API-key:
+ * https://openweathermap.org/api
+ * Place your API as String in API_ID
+ */
 
 public class Controller implements Initializable {
     @FXML
@@ -43,17 +47,17 @@ public class Controller implements Initializable {
     ImageView weatherIcon;
     String cityName;
     JsonNode jsonNode;
-    String API_ID = "5e06438d50f63775dfac81c821f1f979";
+    String API_ID = "";
     String IMAGE;
     @FXML
     AnchorPane anchorPane;
 
     public void getWeatherInformation() throws IOException {
-        getCountry();
-        getTemperature();
-        getWeather();
-        getImage();
-        getFacts();
+        getCountry(); //get country information
+        getTemperature(); //get all information about temperature
+        getWeather(); //get Icon name and weather description
+        getImage(); //set weather image
+        getFacts(); //set daily fact
     }
     private void getCountry(){
         String temp = (jsonNode.get("name")
@@ -87,10 +91,10 @@ public class Controller implements Initializable {
     }
     private void getImage(){
         String iconUrl = "http://openweathermap.org/img/w/" + IMAGE + ".png";
-        //System.out.println(iconUrl);
         Image image = new Image(iconUrl);
         weatherIcon.setImage(image);
     }
+    //Calling openweathermap API
     private void callOWM(String city){
         try {
             URL url = new URL("http://api.openweathermap.org/data/2.5/weather?q=" + city + "&&appid=" + API_ID + "&units=metric");
@@ -114,6 +118,8 @@ public class Controller implements Initializable {
             System.out.println(e.getMessage());
         }
     }
+  
+    //Settings button
     public void getSettings() throws IOException {
         TextInputDialog dialog = new TextInputDialog(cityName);
         dialog.setTitle("Change city");
@@ -130,11 +136,13 @@ public class Controller implements Initializable {
         DailyFacts.getDailyFact();
         factInfoLabel.setText(DailyFacts.getFactInformation());
     }
+    // get location based on IP Address
     public void basicLocation(String ct) throws IOException {
         callOWM(ct);
         cityNameLabel.setText(ct);
     }
-
+    
+    //Scene initialization in that case
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         try {
