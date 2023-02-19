@@ -20,8 +20,8 @@ public class DailyFacts {
     public static void getDailyFact() throws IOException {
         URL url = new URL("https://numbersapi.p.rapidapi.com/"+month +"/"+day+"/date?fragment=true&json=true");
         HttpURLConnection conn = (HttpURLConnection) url.openConnection();
-        conn.addRequestProperty("X-RapidAPI-Key", "52f6693dacmsh65e981a731143fbp1af2bajsn2013c8ec5ac6");
-        conn.addRequestProperty("X-RapidAPI-Host", "numbersapi.p.rapidapi.com");
+        conn.addRequestProperty("X-RapidAPI-Key", "");
+        conn.addRequestProperty("X-RapidAPI-Host", "");
         conn.setRequestMethod("GET");
         BufferedReader in = new BufferedReader(new InputStreamReader(conn.getInputStream()));
         String inputLine;
